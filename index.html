@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-content">
+            <img src="images/mac.png" alt="">
+        </div>
+        <div class="booking-form">
+            <h2>Customize your Blue 24-inch iMac with Apple M1 chip</h2>
+            <p>Apple M1 chip with 8-core CPU with 4 performance cores and 4 efficiency cores, 7-core GPU, and 16-core Neural Engine *GB unified memory 256GB SSD storage. Two thunderbolt / USB 4 ports Magic Mouse Magic Keyboard - US English.</p>
+            
+            
+
+            <div class="input-group f-class">
+                <div>
+                    <label id="phone-total" for="">First Class ($150)</label>
+                    <input id="phone-count" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="handleProductChange('phone',true)" class="btn btn-default">8GB unified memory</button>
+                    <button onclick="handleProductChange('phone',false)" class="btn btn-default">16GB unified memory</button>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label id="case-total" for="">Economy ($100)</label>
+                    <input id="case-count" class="inp-style inp-width" type="number" name="" value="0">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="handleProductChange('case',true)" class="btn btn-default">+</button>
+                    <button onclick="handleProductChange('case',false)" class="btn btn-default">-</button>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="total-price">$00</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p id="tax-amount">$00</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="grand-total">$00</p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+    </section>
+
+    <script>
+        function handleProductChange(product,isIncrease){
+            const productCount = getInputValue(product);
+            let productNewCount = productCount;
+            if(isIncrease == true){
+                productNewCount = productCount+1;
+            }
+            if(isIncrease == false && productCount>0){
+                productNewCount = productCount-1;
+            }
+            document.getElementById(product+'-count').value = productNewCount;
+            let productTotal = 0;
+            if(product == 'phone'){
+                productTotal = productNewCount * 150;
+            }
+            if(product == 'case'){
+                productTotal = productNewCount * 100;
+            }
+            document.getElementById(product+'-total').innerText = '$'+productTotal;
+            calculateTotal();
+            // const caseInput = document.getElementById('case-count');
+            // const caseCount = parseInt(caseInput.value);
+            // let caseNewCount = caseCount;
+            // if(isIncrease == true){
+            //     caseNewCount = caseCount+1;
+            // }
+            // if(isIncrease == false && caseCount>0){
+            //     caseNewCount = caseCount -1;
+            // }
+            // caseInput.value = caseNewCount;
+            // const caseTotal = caseNewCount*100;
+            // document.getElementById('case-total').innerText = '$'+caseTotal;
+        }
+        function calculateTotal(){
+            const phoneCount = getInputValue('phone');
+            const caseCount = getInputValue('case');
+            const totalPrice = phoneCount * 150 + caseCount*100;
+            document.getElementById('total-price').innerText = '$'+totalPrice;
+            const tax= Math.round(totalPrice*0.1);
+            document.getElementById('tax-amount').innerText = '$'+tax;
+            const grandTotal = totalPrice + tax;
+            document.getElementById('grand-total').innerText = '$'+grandTotal;
+        }
+        function getInputValue(product){
+            console.log(product);
+            const productInput = document.getElementById(product + '-count');
+            const productCount = parseInt(productInput.value);
+            return productCount;
+        }
+    </script>
+</body>
+
+</html>
