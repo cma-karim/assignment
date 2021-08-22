@@ -27,8 +27,8 @@
 
             <div class="input-group f-class">
                 <div>
-                    <label id="phone-total" for="">First Class ($150)</label>
-                    <input id="phone-count" class="inp-style inp-width" type="number" name="" value="0">
+                    <label id="phone-total" for="">Memory</label>
+                    <input id="phone-count" class="inp-style inp-width" type="number" name="" value="">
                 </div>
                 <div class="plus-minus-btn">
                     <button onclick="handleProductChange('phone',true)" class="btn btn-default">8GB unified memory</button>
@@ -38,12 +38,23 @@
             
             <div class="input-group f-class">
                 <div>
-                    <label id="case-total" for="">Economy ($100)</label>
+                    <label id="case-total" for="">Storage</label>
                     <input id="case-count" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleProductChange('case',true)" class="btn btn-default">+</button>
-                    <button onclick="handleProductChange('case',false)" class="btn btn-default">-</button>
+                    <button onclick="handleProductChange('case',true)" class="btn btn-default">256GB SSD storage</button>
+                    <button onclick="handleProductChange('case',false)" class="btn btn-default">512GB SSD storage</button>
+                    <button onclick="handleProductChange('case',false)" class="btn btn-default">1TB SSD storage</button>
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label id="phone-total" for="">Choose your delivery option</label>
+                    <input id="phone-count" class="inp-style inp-width" type="number" name="" value="">
+                </div>
+                <div class="plus-minus-btn">
+                    <button onclick="handleProductChange('phone',true)" class="btn btn-default">Friday,Agust 25 Free premier delivery</button>
+                    <button onclick="handleProductChange('phone',false)" class="btn btn-default">Monday, August 21. Dewlivery charge $20</button>
                 </div>
             </div>
             <div class="calculations">
@@ -98,18 +109,6 @@
             }
             document.getElementById(product+'-total').innerText = '$'+productTotal;
             calculateTotal();
-            // const caseInput = document.getElementById('case-count');
-            // const caseCount = parseInt(caseInput.value);
-            // let caseNewCount = caseCount;
-            // if(isIncrease == true){
-            //     caseNewCount = caseCount+1;
-            // }
-            // if(isIncrease == false && caseCount>0){
-            //     caseNewCount = caseCount -1;
-            // }
-            // caseInput.value = caseNewCount;
-            // const caseTotal = caseNewCount*100;
-            // document.getElementById('case-total').innerText = '$'+caseTotal;
         }
         function calculateTotal(){
             const phoneCount = getInputValue('phone');
